@@ -11,15 +11,23 @@ on:
     - cron: '45 18 * * 0'  # Triggers Job7: Every Sunday at 12:15 AM IST (6:45 PM UTC previous day)
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   trigger_jobs:
     runs-on: ubuntu-latest
-
     steps:
       - name: Set variables
         run: |
           echo "REPO_OWNER=$(echo $GITHUB_REPOSITORY | cut -d'/' -f1)" >> $GITHUB_ENV
           echo "REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)" >> $GITHUB_ENV
+
+      - name: Debugging Step
+        run: |
+          echo "Repository Owner: ${{ env.REPO_OWNER }}"
+          echo "Repository Name: ${{ env.REPO_NAME }}"
 
       - name: Trigger Job1 Workflow
         run: |

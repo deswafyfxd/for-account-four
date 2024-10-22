@@ -3,7 +3,7 @@ name: Build and Trigger Jobs
 on:
   schedule:
     - cron: '0 11 * * 1'  # Triggers Job1: Every Monday at 4:30 PM IST (11:00 AM UTC)
-    - cron: '0 1 * * 2'  # Triggers Job2: Every Tuesday at 12:15 AM IST (6:45 PM UTC previous day)
+    - cron: '15 1 * * 2'  # Triggers Job2: Every Tuesday at 12:15 AM IST (6:45 PM UTC previous day)
     - cron: '50 2 * * 3'  # Triggers Job3: Every Wednesday at 8:20 AM IST (2:50 AM UTC)
     - cron: '0 11 * * 4'  # Triggers Job4: Every Thursday at 4:30 PM IST (11:00 AM UTC)
     - cron: '45 18 * * 5'  # Triggers Job5: Every Friday at 12:15 AM IST (6:45 PM UTC previous day)
@@ -32,56 +32,56 @@ jobs:
 
       - name: Trigger Job1 Workflow
         run: |
-          curl -X POST \
+          response=$(curl -w "%{http_code}" -o /dev/null -s -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.MY_GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}/actions/workflows/job1.yml/dispatches \
-          -d '{"ref":"main"}'
+          -d '{"ref":"main"}') && echo "Job1 Trigger Response: $response"
 
       - name: Trigger Job2 Workflow
         run: |
-          curl -X POST \
+          response=$(curl -w "%{http_code}" -o /dev/null -s -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.MY_GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}/actions/workflows/job2.yml/dispatches \
-          -d '{"ref":"main"}'
+          -d '{"ref":"main"}') && echo "Job2 Trigger Response: $response"
 
       - name: Trigger Job3 Workflow
         run: |
-          curl -X POST \
+          response=$(curl -w "%{http_code}" -o /dev/null -s -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.MY_GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}/actions/workflows/job3.yml/dispatches \
-          -d '{"ref":"main"}'
+          -d '{"ref":"main"}') && echo "Job3 Trigger Response: $response"
 
       - name: Trigger Job4 Workflow
         run: |
-          curl -X POST \
+          response=$(curl -w "%{http_code}" -o /dev/null -s -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.MY_GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}/actions/workflows/job4.yml/dispatches \
-          -d '{"ref":"main"}'
+          -d '{"ref":"main"}') && echo "Job4 Trigger Response: $response"
 
       - name: Trigger Job5 Workflow
         run: |
-          curl -X POST \
+          response=$(curl -w "%{http_code}" -o /dev/null -s -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.MY_GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}/actions/workflows/job5.yml/dispatches \
-          -d '{"ref":"main"}'
+          -d '{"ref":"main"}') && echo "Job5 Trigger Response: $response"
 
       - name: Trigger Job6 Workflow
         run: |
-          curl -X POST \
+          response=$(curl -w "%{http_code}" -o /dev/null -s -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.MY_GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}/actions/workflows/job6.yml/dispatches \
-          -d '{"ref":"main"}'
+          -d '{"ref":"main"}') && echo "Job6 Trigger Response: $response"
 
       - name: Trigger Job7 Workflow
         run: |
-          curl -X POST \
+          response=$(curl -w "%{http_code}" -o /dev/null -s -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.MY_GITHUB_TOKEN }}" \
           https://api.github.com/repos/${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}/actions/workflows/job7.yml/dispatches \
-          -d '{"ref":"main"}'
+          -d '{"ref":"main"}') && echo "Job7 Trigger Response: $response"

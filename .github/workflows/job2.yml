@@ -1,6 +1,7 @@
-name: job2
-
-on: 
+name: Job2
+on:
+  schedule:
+    - cron: '0 2 * * 2'  # Every Tuesday at 6:45 PM UTC
   workflow_dispatch:
 
 permissions: 
